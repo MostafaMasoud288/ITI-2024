@@ -1,0 +1,9 @@
+set str "my name is mostafa masoud"
+
+set my_list [split $str]
+
+puts $my_list
+
+set reversedList [lreverse $my_list]
+
+puts $reversedList

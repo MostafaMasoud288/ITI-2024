@@ -1,0 +1,9 @@
+set str "DIC Intake 43"
+set my_list "DIC Intake 43"
+####string
+puts [string index $str 1]
+puts [string range $str 0 1]
+
+#############list
+puts [lindex $my_list 1]
+puts [lrange $my_list 0 1]

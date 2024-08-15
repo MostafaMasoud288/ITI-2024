@@ -1,0 +1,15 @@
+proc calc { num1 num2 } {
+  set sum [expr $num1+$num2]
+  puts "Sum=$sum"
+  set sub [expr $num1-$num2]
+  puts "Sub=$sub"
+  set mul [expr $num1*$num2]
+  puts "mul=$mul"
+  set div [expr $num1/$num2]
+  puts "div=$div"
+  return $div
+}
+puts "#######case1########"
+puts [calc  75 50]
+puts "#######case2########"
+puts [calc 80.0 70.0]

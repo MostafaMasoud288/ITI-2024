@@ -1,0 +1,8 @@
+
+set mylist {0 1 2 28 4 5 6 36 8 9 102}
+foreach i $mylist {
+   if { $i > 10} {
+     continue
+   }
+   puts " square : [expr $i**2]"
+}

@@ -1,0 +1,8 @@
+set a 36
+set b 36
+
+if { $a > $b } {
+  puts "A is greater than B"} elseif {$a < $b} {
+  puts "B is greater than A"} else {
+  puts "A equals B"
+  }

@@ -1,0 +1,7 @@
+set name1 "Samy"
+set name2 "Sayed"
+
+puts [string compare $name1 $name2]
+
+
+###############################

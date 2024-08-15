@@ -1,0 +1,7 @@
+set var {10 20 30 60 70 80 90}
+
+proc mostafa {var index N } {
+puts [linsert $var $index $N]
+puts [lreplace $var $index $index $N]
+}
+puts [mostafa $var 5 36]

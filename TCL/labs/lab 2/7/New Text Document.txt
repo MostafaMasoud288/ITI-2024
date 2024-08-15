@@ -1,0 +1,24 @@
+##########################################
+proc listoflist {inputList} {
+    set result {}
+    set length [llength $inputList]
+    for {set var 0} {$var < $length} {incr var 2} {
+    lappend result [list [lindex $inputList $var] [lindex $inputList [expr $var+1 ] ]  ]
+
+    }
+    return $result
+}
+
+set myList {0 0 1 1 2 2 3 3}
+set convertedList [listoflist $myList]
+puts $convertedList
+
+
+#######################################
+
+set myList [list 0 0 [list 1 1 [list 2 2 [list 3 3]]]]
+#set convertedList [listoflist $myList]
+puts $myList
+
+set mList {{ 0 0 {  1 1 { 2 2 { 3 3}}}}}
+puts $mList

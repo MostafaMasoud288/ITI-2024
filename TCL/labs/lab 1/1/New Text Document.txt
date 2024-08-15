@@ -1,0 +1,10 @@
+set a 10.0
+set b 5.0
+puts "addition : [expr $a+$b]"
+puts "subration : [expr $a-$b]"
+puts "multiplication : [expr $a*$b]"
+puts "division : [expr $a/$b]"
+puts "exponential : [expr $a**$b]"
+puts "remainder : [expr $a%$b]"
+puts "shift left : [expr $a<<$b]"
+puts "shift right : [expr $a>>$b]"

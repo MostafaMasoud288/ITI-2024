@@ -1,0 +1,4 @@
+set mylist {16 25 36 49}
+foreach i $mylist {
+   puts "sqrt : [expr $i**0.5] ,value:$i, square : [expr $i**2], cubic: [expr $i**3]"
+}
