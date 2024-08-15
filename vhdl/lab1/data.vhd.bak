@@ -1,0 +1,34 @@
+LIBRARY IEEE;LIBRARY WORK;LIBRARY std;
+LIBRARY IEEE;USE IEEE.STD_LOGIC_1164.ALL;USE IEEE.numeric_bit.ALL;USE IEEE.std_logic_arith.all;USE IEEE.numeric_std.all;USE IEEE.std_logic_signed.all;
+
+entity Adder_Subtracter is
+    Port ( A : in  STD_LOGIC_VECTOR (3 downto 0);
+           B : in  STD_LOGIC_VECTOR (3 downto 0);
+           M : in  STD_LOGIC; 
+           Sum : out  STD_LOGIC_VECTOR (3 downto 0);
+          cout : out  STD_LOGIC);
+end entity  Adder_Subtracter;
+
+architecture dataflow of Adder_Subtracter is
+signal onescomplement :  STD_LOGIC_VECTOR (3 downto 0);
+signal twoscomplement :   STD_LOGIC_VECTOR (3 downto 0); 
+signal carry :  STD_LOGIC_VECTOR (2 downto 0);
+begin   
+
+
+onescomplement(0) <=(M xor B(0));
+onescomplement(1) <=(M xor B(1));
+onescomplement(2) <=(M xor B(2));
+onescomplement(3) <=(M xor B(3));
+
+twoscomplement <= onescomplement+1;
+
+Sum<= (A+B) when M='0' else (A+twoscomplement);
+
+carry(0)<= (A(0) and B(0)) or (A(0) and M) or (B(0) and M) ;
+carry(1)<= (A(1) and B(1)) or (A(1) and carry(0)) or (B(1) and carry(0)) ;
+carry(2)<= (A(2) and B(2)) or (A(2) and carry(1)) or (B(2) and carry(1)) ;
+cout<= (A(3) and B(3)) or (A(3) and carry(2)) or (B(3) and carry(2)) ;
+
+end architecture dataflow;
+

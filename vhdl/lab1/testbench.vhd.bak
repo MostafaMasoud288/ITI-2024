@@ -1,0 +1,64 @@
+LIBRARY IEEE;LIBRARY WORK;LIBRARY std;USE IEEE.STD_LOGIC_1164.ALL;USE IEEE.numeric_bit.ALL;USE IEEE.std_logic_arith.all;USE IEEE.numeric_std.all;USE IEEE.std_logic_signed.all;
+----------------------
+USE std.textio.ALL;
+ENTITY testbench IS
+END ENTITY testbench;
+ARCHITECTURE test  OF testbench IS
+COMPONENT Adder_Subtracter IS
+Port ( A : in  STD_LOGIC_VECTOR (3 downto 0);
+           B : in  STD_LOGIC_VECTOR (3 downto 0);
+           M : in  STD_LOGIC; 
+           Sum : out  STD_LOGIC_VECTOR (3 downto 0);
+           Carry : out  STD_LOGIC);
+END COMPONENT Adder_Subtracter;
+
+ signal A ,B:  STD_LOGIC_VECTOR (3 downto 0);
+ signal M :  STD_LOGIC; 
+ signal Sum :  STD_LOGIC_VECTOR (3 downto 0);
+ signal Carry :  STD_LOGIC;
+BEGIN
+dut: Adder_Subtracter PORT MAP(A , B , M ,Sum  ,Carry );
+pd: PROCESS 
+FILE INFILE : text OPEN READ_MODE IS "D:/INFILE.txt";
+FILE OUTFILE : text OPEN WRITE_MODE IS "D:/OUTFILE.txt";
+variable input_line : line;
+variable output_line : line;
+variable A_f ,B_f:  STD_LOGIC_VECTOR (3 downto 0);
+ variable M_f :  STD_LOGIC; 
+ variable Sum_f :  STD_LOGIC_VECTOR (3 downto 0);
+ variable Carry_f :  STD_LOGIC;
+BEGIN
+
+WHILE NOT endfile (INFILE) LOOP
+WAIT FOR 15 ns;
+READLINE (INFILE,input_line);
+READ (input_line, A_f);
+READ (input_line, B_f);
+READ (input_line,  M_f );
+A <=A_f;
+B <=B_f;
+M <=M_f;
+Sum_f:=Sum;
+Carry_f:=Carry;
+WRITE (output_line, string'("Time is now "));
+WRITE (output_line, NOW); -- Current simulation time
+WRITE (output_line, string'(" A = "));
+WRITE (output_line, A_f);
+WRITE (output_line, string'(", B = "));
+WRITE (output_line, B_f);
+WRITE (output_line, string'(", M = "));
+WRITE (output_line, M_f);
+WRITEline (OUTFILE,output_line);
+
+WRITE (output_line, string'(" Sum = "));
+WRITE (output_line, Sum_f);
+WRITE (output_line, string'(", Carry = "));
+WRITE (output_line, Carry_f);
+WRITEline (OUTFILE,output_line);
+WAIT FOR 15 ns;
+
+
+END LOOP;
+WAIT; -- stop simulation run
+END PROCESS pd;
+END ARCHITECTURE test ;

@@ -1,0 +1,28 @@
+LIBRARY IEEE;LIBRARY WORK;LIBRARY std;USE IEEE.STD_LOGIC_1164.ALL;USE IEEE.numeric_bit.ALL;USE IEEE.std_logic_arith.all;USE IEEE.numeric_std.all;USE IEEE.std_logic_signed.all;
+
+entity Adder_Subtracter is
+    Port ( A : in  STD_LOGIC_VECTOR (3 downto 0);
+           B : in  STD_LOGIC_VECTOR (3 downto 0);
+           M : in  STD_LOGIC; 
+           Sum : out  STD_LOGIC_VECTOR (3 downto 0);
+           Carry : out  STD_LOGIC);
+end entity  Adder_Subtracter;
+
+architecture Behavioral of Adder_Subtracter is
+
+signal temp : STD_LOGIC_VECTOR (4 downto 0);
+begin   
+ p1: process (A,B,M,temp) BEGIN 
+ if M ='0' THEN
+ temp<=(("0" & A ) + ( "0" & B ));
+ carry<=temp(4);
+
+ else
+ temp<=(("0" & A ) - ( "0" & B ));
+ carry<=temp(4);
+
+ end if;
+ Sum<=temp(3 downto 0); 
+ end process p1;    
+end architecture Behavioral;
+

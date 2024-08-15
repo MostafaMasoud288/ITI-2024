@@ -1,0 +1,25 @@
+LIBRARY IEEE;LIBRARY WORK;LIBRARY std;USE IEEE.STD_LOGIC_1164.ALL;USE IEEE.numeric_bit.ALL;USE IEEE.std_logic_arith.all;USE IEEE.numeric_std.all;USE IEEE.std_logic_signed.all;
+
+entity Adder_Subtracter_1bit is
+    Port ( A,B,mode: in STD_LOGIC;
+           cout,sum : out  STD_LOGIC);
+          
+end entity  Adder_Subtracter_1bit;
+
+architecture Adder_Subtracter_1bit of Adder_Subtracter_1bit is
+--signal Onescomplement,Twoscomplement:STD_LOGIC;
+begin
+--p1: process( A,B,mode,Onescomplement,Twoscomplement) is 
+   -- begin
+     -- Onescomplement <=(mode xor B);
+
+      --Twoscomplement <= Onescomplement+1;
+
+      sum<= (A+B) when mode='0' else (A+(mode xor B));
+      cout<= (A and B) or (A and mode) or (B and mode) ;
+    --sum<=A xor B;
+    --cout<= ((not(A)) AND B AND mode) or (A AND B AND (not(mode)));
+  
+  --  end process p1 ;
+
+end architecture Adder_Subtracter_1bit ;
